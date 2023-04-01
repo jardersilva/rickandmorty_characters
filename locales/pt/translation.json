@@ -1,0 +1,26 @@
+{
+  "main": {
+    "aplicationName": "Rick and Morty",
+    "aplicationName2": "Personagens"
+  },
+  "formSearch": {
+    "title": "Filtros",
+    "label": "Filtrar pelo nome do personagem",
+    "placeholderName": "Digite o nome do personagem",
+    "placeholderStatus": "Digite o status do personagem",
+    "placeholderSpecies": "Digite a espécie do personagem",
+    "placeholderGender": "Digite o gênero do personagem",
+    "button": "Filtrar",
+    "button2": "Limpar",
+    "button3": "Mais opções de filtro",
+    "button4": "Menos opções de filtro"
+  },
+  "listCharacters": {
+    "title": "Personagens",
+    "erros": {
+      "title": "Ops! Algo deu errado",
+      "message": "Não foi possível carregar os personagens",
+      "nofound": "Nenhum personagem encontrado"
+    }
+  }
+}

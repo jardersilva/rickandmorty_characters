@@ -1,0 +1,26 @@
+{
+  "main": {
+    "aplicationName": "Rick and Morty",
+    "aplicationName2": "Characters"
+  },
+  "formSearch": {
+    "title": "Filters",
+    "label": "Filter by character name",
+    "placeholderName": "Enter character name",
+    "placeholderStatus": "Enter character status",
+    "placeholderSpecies": "Enter character species",
+    "placeholderGender": "Enter character gender",
+    "button": "Filter",
+    "button2": "Clear",
+    "button3": "More filter options",
+    "button4": "Less filter options"
+  },
+  "listCharacters": {
+    "title": "Characters",
+    "erros": {
+      "title": "Error",
+      "message": "Error loading characters",
+      "nofound": "No characters found"
+    }
+  }
+}
