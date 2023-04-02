@@ -13,7 +13,18 @@
     "button": "Filtrar",
     "button2": "Limpiar",
     "button3": "Más opciones de filtro",
-    "button4": "Menos opciones de filtro"
+    "button4": "Menos opciones de filtro",
+    "status": {
+      "alive": "Vivo",
+      "dead": "Muerto",
+      "unknown": "Desconocido"
+    },
+    "gender": {
+      "female": "Hembra",
+      "male": "Macho",
+      "genderless": "Sin género",
+      "unknown": "Desconocido"
+    }
   },
   "listCharacters": {
     "title": "Personajes",

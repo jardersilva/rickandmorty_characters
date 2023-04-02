@@ -1,13 +1,13 @@
 import {
   Stack,
-  Box,
   Text,
   FormControl,
   FormLabel,
   Input,
   HStack,
-  useColorModeValue,
   Button,
+  Box,
+  Select,
 } from "@chakra-ui/react";
 import { FaFilter } from "react-icons/fa";
 import { BiCustomize } from "react-icons/bi";
@@ -15,6 +15,7 @@ import { useTranslation } from "next-i18next";
 import { FaSistrix } from "react-icons/fa";
 import { useFormik } from "formik";
 import React, { useState } from "react";
+import ISeachParams from "@/@types/SearchParams";
 
 interface FormSearchProps {
   onFilter: (values: any) => void;
@@ -33,7 +34,7 @@ function FormSearch({ onFilter }: FormSearchProps) {
       type: "",
       gender: "",
     },
-    onSubmit: async (values) => {
+    onSubmit: async (values: ISeachParams) => {
       console.log(values);
       onFilter(values);
     },
@@ -78,12 +79,86 @@ function FormSearch({ onFilter }: FormSearchProps) {
             />
           </FormControl>
         </HStack>
+        {filterFull && <Stack mb={3} h={5} width={12} />}
+        {filterFull && <FormFilter />}
         <Button mt={8} leftIcon={<FaSistrix />} onClick={formik.submitForm}>
           {`${t("formSearch.button")}`}
         </Button>
       </Stack>
     </Stack>
   );
+
+  function FormFilter() {
+    return (
+      <Box display="flex" flexDirection={{ base: "column", md: "row" }}>
+        <Box flex="1" mr={{ base: "0", md: "4" }}>
+          <FormControl>
+            <Select
+              variant="filled"
+              placeholder={`${t("formSearch.placeholderStatus")}`}
+              name="status"
+              value={formik.values.status}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            >
+              <option value="alive">{`${t("formSearch.status.alive")}`}</option>
+              <option value="dead">{`${t("formSearch.status.dead")}`}</option>
+              <option value="unknown">{`${t(
+                "formSearch.status.unknown"
+              )}`}</option>
+            </Select>
+          </FormControl>
+        </Box>
+        <Box flex="1" mr={{ base: "0", md: "4" }}>
+          <FormControl>
+            <Input
+              placeholder={`${t("formSearch.placeholderSpecies")}`}
+              name="species"
+              value={formik.values.species}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              variant="filled"
+            />
+          </FormControl>
+        </Box>
+        <Box flex="1" mr={{ base: "0", md: "4" }}>
+          <FormControl>
+            <Input
+              placeholder={`${t("formSearch.placeholderSpecies")}`}
+              name="type"
+              value={formik.values.type}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              variant="filled"
+            />
+          </FormControl>
+        </Box>
+        <Box flex="1">
+          <FormControl>
+            <Select
+              variant="filled"
+              placeholder={`${t("formSearch.placeholderGender")}`}
+              name="gender"
+              value={formik.values.gender}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            >
+              <option value="female">{`${t(
+                "formSearch.gender.female"
+              )}`}</option>
+              <option value="male">{`${t("formSearch.gender.male")}`}</option>
+              <option value="genderless">{`${t(
+                "formSearch.gender.genderless"
+              )}`}</option>
+              <option value="unknown">{`${t(
+                "formSearch.gender.unknown"
+              )}`}</option>
+            </Select>
+          </FormControl>
+        </Box>
+      </Box>
+    );
+  }
 }
 
 export default FormSearch;

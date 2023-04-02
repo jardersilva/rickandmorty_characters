@@ -1,12 +1,23 @@
 import ICharacter from "@/@types/Characters";
-import { Image } from "@chakra-ui/react";
+import { IconButton, Image, Link } from "@chakra-ui/react";
 import { Stack, HStack, Text, VStack } from "@chakra-ui/layout";
+import { ChevronRightIcon } from "@chakra-ui/icons";
+import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
+import { addFavorite, isFavorite } from "@/repository/Character";
+import { useEffect, useState } from "react";
 
 interface CardCharactersProps {
   character: ICharacter;
 }
 
 export default function CardCharacter({ character }: CardCharactersProps) {
+  const [favorite, setFavorite] = useState(isFavorite(character));
+
+  const handleSetFavorite = () => {
+    addFavorite(character);
+    setFavorite(!favorite);
+  };
+
   return (
     <Stack
       w={"18em"}
@@ -21,16 +32,31 @@ export default function CardCharacter({ character }: CardCharactersProps) {
           src={character.image}
           alt={character.name}
         />
-        <Text fontWeight="bold" fontSize="xl">
+        <Text
+          noOfLines={1}
+          textAlign={"center"}
+          fontWeight="bold"
+          fontSize="xl"
+        >
           {character.name}
         </Text>
-        <Text fontSize="md" textAlign={"center"}>
+        <Text noOfLines={1} textAlign={"center"} fontSize="md">
           {character.species}
         </Text>
-        <Text fontSize="md" textAlign={"center"}>
+        <Text noOfLines={1} fontSize="md" textAlign={"center"}>
           {character.origin.name}
         </Text>
       </VStack>
+      <HStack paddingLeft={3} paddingRight={3} justifyContent={"space-between"}>
+        <IconButton
+          aria-label="Scroll Right"
+          icon={favorite ? <MdFavorite /> : <MdFavoriteBorder />}
+          onClick={() => handleSetFavorite()}
+        />
+        <Link href={`/detailsCharacter/${character.id}`}>
+          <IconButton aria-label="Scroll Right" icon={<ChevronRightIcon />} />
+        </Link>
+      </HStack>
     </Stack>
   );
 }

@@ -7,36 +7,33 @@ import Header from "@/components/Header";
 import FormSearch from "@/components/FormSearch";
 import ListCharacters from "@/components/ListCharacters";
 import { useCallback, useEffect, useState } from "react";
-import { getCharacter } from "@/repository/Character";
+import { getCharacterAPI } from "@/repository/Character";
 import ICharacter from "@/@types/Characters";
+import ISeachParams from "@/@types/SearchParams";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [characters, setCharacters] = useState<ICharacter[]>([]);
-  const [name, setName] = useState("");
-  const [status, setStatus] = useState("");
-  const [species, setSpecies] = useState("");
-  const [type, setType] = useState("");
-  const [gender, setGender] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [paramsFilter, setParamsFilter] = useState<ISeachParams>({});
   const { t } = useTranslation();
   const toast = useToast();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const fetchCharacters = async (page?: number) => {
+  const fetchCharacters = async () => {
     let query: string = ``;
-    if (page) query += `page=${page}&`;
-    if (name) query += `name=${name}&`;
-    if (status) query += `status=${status}&`;
-    if (species) query += `species=${species}&`;
-    if (type) query += `type=${type}&`;
-    if (gender) query += `gender=${gender}&`;
+    if (paramsFilter.page) query += `page=${paramsFilter.page}&`;
+    if (paramsFilter.name) query += `name=${paramsFilter.name}&`;
+    if (paramsFilter.status) query += `status=${paramsFilter.status}&`;
+    if (paramsFilter.species) query += `species=${paramsFilter.species}&`;
+    if (paramsFilter.type) query += `type=${paramsFilter.type}&`;
+    if (paramsFilter.gender) query += `gender=${paramsFilter.gender}&`;
     if (query) query = `?${query}`;
     console.log(query);
     try {
-      const res = await getCharacter({ query });
-      if (page! >= 1) {
+      const res = await getCharacterAPI({ query });
+      if (paramsFilter.page! >= 1) {
         const newList = characters.concat(res.results);
         console.log(newList);
         setCharacters(newList);
@@ -61,15 +58,14 @@ export default function Home() {
     //formik.resetForm();
   };
 
-  const handleFilter = (e: any) => {
+  const handleFilter = (e: ISeachParams) => {
     console.log(e);
     setIsLoading(true);
     setCharacters([]);
-    setName(e.name);
-    setStatus(e.status);
-    setSpecies(e.species);
-    setType(e.type);
-    setGender(e.gender);
+    setParamsFilter({
+      ...e,
+      page: 1,
+    });
   };
 
   useEffect(() => {
@@ -77,14 +73,14 @@ export default function Home() {
       await fetchCharacters();
     }
     fetchData();
-  }, [name, status, species, type, gender]);
+  }, [paramsFilter]);
 
   return (
     <>
       <Content>
         <Header />
         <FormSearch
-          onFilter={(e: any) => {
+          onFilter={(e: ISeachParams) => {
             handleFilter(e);
           }}
         />
@@ -92,7 +88,9 @@ export default function Home() {
         {isLoading || characters.length === 0 ? null : (
           <ListCharacters
             characters={characters}
-            fetchCharacters={(page) => fetchCharacters(page)}
+            fetchCharacters={(page) =>
+              setParamsFilter({ ...paramsFilter, page })
+            }
           />
         )}
       </Content>

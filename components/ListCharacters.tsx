@@ -72,6 +72,7 @@ export default function ListCharacters({
           overflowX="hidden"
           gap={2}
           onScroll={handleScroll}
+          h={"20em"}
         >
           {characters.map((c: ICharacter) => (
             // eslint-disable-next-line react/jsx-key

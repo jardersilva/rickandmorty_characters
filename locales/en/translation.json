@@ -13,7 +13,18 @@
     "button": "Filter",
     "button2": "Clear",
     "button3": "More filter options",
-    "button4": "Less filter options"
+    "button4": "Less filter options",
+    "status": {
+      "alive": "Alive",
+      "dead": "Dead",
+      "unknown": "Unknown"
+    },
+    "gender": {
+      "female": "Female",
+      "male": "Male",
+      "genderless": "Genderless",
+      "unknown": "Unknown"
+    }
   },
   "listCharacters": {
     "title": "Characters",
