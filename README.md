@@ -1,38 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Desafio de API do rickandmortyapi
 
-## Getting Started
+Desenvolvi como forma de desafio tecnico uma plataforma onde consome um API REST e trata os dados para o usuário
 
-First, run the development server:
+## Recursos
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+- Listagem de personagens
+- Filtro de personagens por nome
+- Filtro de personagens por tipo
+- Filtro de personagens por espercie
+- Filtro de personagens por sexo
+- Adiciona e remove personagens dos favoritos
+- Sistema multi idiomas (pt-BR, es-ES, e en-US)
+- Temas escuro e claro
+- Teste unitários
+
+## Installation
+
+Vamos executar o sistema
+
+##### On-line
+
+[https://desafio-rickandmortycharacters.ynsmdx.easypanel.host/](https://desafio-rickandmortycharacters.ynsmdx.easypanel.host/)
+O link acima disponibilzei afim de testar-mos a aplicação de forma mais rápida
+
+##### Via docker
+
+Primeiro passo e clonar esse repositório e na raiz dele executar os comandos:
+
+```sh
+docker build -t jarder_aplication  .
+docker run -p 3000:3000 jarder_aplication
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+##### Tradicional
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Primeiro passo e clonar esse repositório:
+e depois e só executar
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```sh
+npm install // ou yarn install
+npm run dev // ou yarn dev
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+E a aplicaçao irá executar em: [http://localhost:3000/](http://localhost:3000/)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+##### Testes unitários
 
-## Learn More
+Essa aplicação foi realizado alguns testes unitário com a lib Jest, e para executar:
 
-To learn more about Next.js, take a look at the following resources:
+```sh
+npm run test // ou yarn test
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Nesse projeto utilizei:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- NextJs
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
