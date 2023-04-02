@@ -22,8 +22,10 @@ const LanguageSelector = () => {
       return "🇺🇸";
     } else if (selectedLanguage == "pt") {
       return "🇧🇷";
-    } else {
+    } else if (selectedLanguage == "es") {
       return "🇪🇸";
+    } else {
+      return "🇧🇷";
     }
   }
 
